@@ -243,6 +243,27 @@ class Solution:
 # ===================================================================================
 
 # [AUTHOR] ME
-# [DESCRIPTION] NO WORKING SOLUTION
+# [DESCRIPTION] Re-used already existing solution
 # Issues:
 #	Really hard to understand how to do asymetric tree recursively...
+#   We definitely need to use Inorder traversal to got to left side
+#   first and set Left to None.
+#   While we are setting the root.left to None, we need to assign
+#   the next step to each root.right to have ability to move through
+#   the rigth side of the Tree.
+#   We need to get the previous node while traversing. So, we use tail
+#   argument to store it on each execution stack frame. We need to manage
+#   base case where we actually handle the previous node.
+#   Need to set a default value for the tail on the arguments level,
+#   because at some point we need to assign value None to root.left.
+
+class Solution:
+    def increasingBST(self, root: TreeNode, tail: TreeNode = None) -> TreeNode:
+        if not root:
+            return tail
+        
+        result = self.increasingBST(root.left, root)
+        root.left = None
+        root.right = self.increasingBST(root.right, tail)
+        
+        return result
