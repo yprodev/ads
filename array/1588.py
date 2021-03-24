@@ -241,3 +241,17 @@ class Solution:
         
         memo[nxt + "," + nxt + 1]
 
+# [UPDATE] Sliding window strategy should work (the same the user: lokeshsenthilkumar suggested).
+# However, it is not the best solution possible.
+# [DESCRIPTION] Working solution with sliding window. Referenced the solution of
+# lokeshsenthilkumar user
+class Solution:
+    def sumOddLengthSubarrays(self, arr: List[int]) -> int:
+        total = 0
+        arrLength = len(arr)
+        
+        for i in range(arrLength):
+            for j in range(i, arrLength, 2):
+                total += sum(arr[i : j + 1])
+                
+        return total
