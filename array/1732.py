@@ -103,3 +103,12 @@ def largestAltitude(self, gain: List[int]) -> int:
         
         print(cur)
 
+# [UPDATE] Use the solution of Kedaar_Kalyan as a reference
+class Solution:
+    def largestAltitude(self, gain: List[int]) -> int:
+        sum = [0]
+        
+        for i in range(len(gain)):
+            sum.append(sum[i] + gain[i])
+            
+        return max(sum)
