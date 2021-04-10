@@ -184,7 +184,8 @@ class Solution:
 # [AUTHOR] ME
 # [DESCRIPTION] First working solution
 # Issues:
-#	
+#	You should also merge two arrays, where the time complexity
+#   is O(n).
 
 
 class Solution:
