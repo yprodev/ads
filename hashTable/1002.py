@@ -160,3 +160,27 @@ class Solution:
             
         for idx, key in enumerate(mem.keys()):
             print(idx, mem[key])
+
+
+
+# [AUTHOR] Copied solution from ryancll
+# [DESCRIPTION] WORKING solution
+# Issues:
+#   - Hard to remember how to solve algorithms after some pause
+
+class Solution:
+    def commonChars(self, A: List[str]) -> List[str]:
+        firstWordChecker = list(A[0])
+        
+        for word in A[1:]:
+            answers = []
+            
+            for c in word:
+                if c in firstWordChecker:
+                    answers.append(c)
+                    firstWordChecker.remove(c)
+                    
+            
+            firstWordChecker = answers
+            
+        return firstWordChecker
