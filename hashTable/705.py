@@ -492,3 +492,40 @@ class MyHashSet:
 # obj.remove(key)
 # param_3 = obj.contains(key)
 
+# [AUTHOR] ME (copied version from emwalker)
+# [DESCRIPTION] First working solution
+
+class MyHashSet:
+
+    def __init__(self):
+        self.size = 10000
+        self.buckets = [[] for _ in range(self.size)]
+
+    def add(self, key: int) -> None:
+        bucket, idx = self._index(key)
+        if idx >= 0:
+            return
+        bucket.append(key)
+
+    def remove(self, key: int) -> None:
+        bucket, idx = self._index(key)
+        if idx < 0: # Here was non-obvious error when you put 'idx <= 0' instead of 'idx < 0'
+            return
+        bucket.remove(key)
+
+    def contains(self, key: int) -> bool:
+        bck, idx = self._index(key)
+        return idx >= 0
+
+    def _hash(self, key):
+        return key % self.size
+
+    def _index(self, key):
+        hash = self._hash(key)
+        bucket = self.buckets[hash]
+
+        for i, k in enumerate(bucket):
+            if k == key:
+                return bucket, i
+
+        return bucket, -1
