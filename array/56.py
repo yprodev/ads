@@ -4,8 +4,10 @@
 """
 Let us sort our intervals by its starts and then iterate them one by one: we can have two options:
 
-The current ending point in our ans is less than beg of new interval: it means that we have a gap and we need to add new interval to our answer.
-In the opposite case our intervals are overlapping, so we need to update the end for last interval we created.
+The current ending point in our ans is less than beg of new interval:
+    1. it means that we have a gap and we need to add new interval to our answer.
+    2. In the opposite case our intervals are overlapping, so we need to update the end for last interval we created.
+
 Complexity: time complexity is O(n log n) to sort intervals and space complexity is O(n) to keep sorted intervals and answer.
 """
 
@@ -155,6 +157,33 @@ class Solution:
         print(newArr)
         
         return newArr
+
+
+# [AUTHOR] ME
+# [DESCRIPTION] First working solution (used DBabichev's variant as an example)
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        res = []
+
+        for beg, end in sorted(intervals):
+            if not res or res[-1][1] < beg:
+                res.append([beg, end])
+            else:
+                res[-1][1] = max(res[-1][1], end)
+
+        return res
+
+
+#[RECAP]
+# 1. Think in terms of cases
+# 2. Find edge cases:
+#   2.1 Only one interval
+#   2.2 Two intervals with the gap
+#   2.3 Two overlapping intervals
+# 3. Find the "key factor"
+
+
 
 
 
