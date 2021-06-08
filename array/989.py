@@ -166,6 +166,43 @@ vector<int> Solution :: addToArrayForm(vector<int>& a, int k)
 # ===================================================
 
 
+# [AUTHOR]: rock
+# [DESCRIPTION]: [Java/Python 3] 6 liner w/ comment and analysis
+
+"""
+Note:
+I read several other java solutions, and found ArrayList.add(0, K % 10) was used, and it is not O(1) but O(n) instead.
+
+LinkedList.add(0, i) or offerFirst(i) is O(1).
+
+Correct me if I am wrong.
+
+public List<Integer> addToArrayForm(int[] A, int K) {
+    LinkedList<Integer> ans = new LinkedList<>();
+    for (int i = A.length - 1; K > 0 || i >= 0; --i, K /= 10) { // loop through A and K, from right to left.
+        K += i >= 0 ? A[i] : 0; // Use K as carry over, and add A[i].
+        ans.offerFirst(K % 10); // add the least significant digit of K.
+    }
+    return ans;
+}
+
+Analysis:
+
+Time & space: O(n + logK), where n = A.length.
+
+"""
+
+def addToArrayForm(self, A: List[int], K: int) -> List[int]:
+    ans, i = [], len(A) - 1
+    while K > 0 or i >= 0:
+        K, rmd = divmod(K + (A[i] if i >= 0 else 0), 10)
+        ans.append(rmd)
+        i -= 1
+    return reversed(ans)
+
+
+# ===================================================
+
 # [AUTHOR] ME
 # [DESCRIPTION] First working solution
 
@@ -182,3 +219,20 @@ class Solution:
 # [QUESTIONS]:
 # What is divmod function in Python?
 # What does this do: range(len(A) - 1, -1, -1)?
+# What is xrange function?
+
+
+
+# [AUTHOR] ME (re-typed the solution from rock)
+
+class Solution:
+    def addToArrayForm(self, num: List[int], k: int) -> List[int]:
+        ans, i = [], len(num) - 1
+
+        while k > 0 or i >= 0:
+            k, rmd = divmod(k + (num[i] if i >= 0 else 0), 10)
+            ans.append(rmd)
+            i -= 1
+
+        return reversed(ans)
+
