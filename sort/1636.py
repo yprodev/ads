@@ -309,3 +309,12 @@ def createFreqHashTable(nums):
 # ... start useing this ...
 def createFreqHashTableWithCounter(nums):
 	mem = Counter(nums)
+
+# ===================================================
+
+# [AUTHOR] Re-typed from author: denisrasulev
+class Solution:
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        mem = Counter(nums)
+        return sorted(nums, key = lambda x: (mem[x], -x))
+
