@@ -118,9 +118,22 @@ class Solution:
                 return bars
 
 
-"""
-TESTCASES
 
+# [AUTHOR] ME
+# [DESCRIPTION] Second re-typed solution (from author: rock)
+
+class Solution:
+    def maxIceCream(self, costs: List[int], coins: int) -> int:
+        for idx, cost in enumerate(sorted(costs)):
+            coins -= cost
+            
+            if coins < 0:
+                return idx
+            
+        return len(costs)
+
+# [TESTCASES]
+"""
 [1,3,2,4,1]
 7
 [10,6,8,7,7,8]
@@ -129,7 +142,5 @@ TESTCASES
 20
 [7,3,3,6,6,6,10,5,9,2]
 56
-
-
 """
 
