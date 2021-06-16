@@ -80,10 +80,10 @@ var averageWaitingTime = function(customers) {
         } 
 		
 		// Advance time to when the order is completed
-        time+=c[1];   
+        time+=c[1];
 		
 		// Keep running total of the waiting times
-        waitingTimes+=(time-c[0]); 
+        waitingTimes+=(time-c[0]);
     })
 
     return waitingTimes / customers.length;
@@ -92,6 +92,7 @@ var averageWaitingTime = function(customers) {
 
 // Runtime: 156 ms (Beats 83.23 % of Javascript submissions )
 // Memory Usage: 63.9 MB ( Beats 37.89 % of javascript submissions )
+
 """
 
 # ===================================================
@@ -99,7 +100,7 @@ var averageWaitingTime = function(customers) {
 # [AUTHOR]: vatsalbhuva11
 # [DESCRIPTION]: [Python 3] Simple Solution with Explanation
 
-"""
+
 class Solution:
     def averageWaitingTime(self, customers: List[List[int]]) -> float:
         total_wait = customers[0][1]
@@ -113,7 +114,7 @@ class Solution:
                 total_wait += wait_temp - i[0]
         return total_wait/len(customers)
 
-
+"""
 	* total_wait is the total wait time of all customers.
 	* wait_temp is the wait time after each customer's order gets ready.
 
@@ -162,4 +163,22 @@ var averageWaitingTime = function(customers) {
     
 };
 """
+
+# ===================================================
+
+# [AUTHOR] Copied from rock author
+# [DESCRIPTION] Re-typed solution for memorizing
+
+class Solution:
+    def averageWaitingTime(self, customers: List[List[int]]) -> float:
+        timeNext = timeWait = 0
+
+        for arrival, time in customers:
+            timeNext = time + max(timeNext, arrival)
+            timeWait += timeNext - arrival
+
+        return timeWait / len(customers)
+
+
+
 
