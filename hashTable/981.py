@@ -140,6 +140,38 @@ TimeMap.prototype.get = function(key, timestamp) {
 
 
 
+# ===================================================
+
+
+# [AUTHOR] jdjw
+# [DESCRIPTION] Python clean solution, binary search
+
+class TimeMap(object):
+
+    def __init__(self):
+        self.map = collections.defaultdict(list)
+        
+
+    def set(self, key, value, timestamp):
+        self.map[key].append((timestamp, value))
+        
+
+    def get(self, key, timestamp):
+        values = self.map[key]
+        if not values: return ''
+        left, right = 0, len(values) - 1
+        while left < right:
+            mid = (left + right + 1) / 2
+            pre_time, value = values[mid]
+            if pre_time > timestamp:
+                right = mid - 1
+            else:
+                left = mid
+        return values[left][1] if values[left][0] <= timestamp else ''
+
+
+# ===================================================
+
 
 # [AUTHOR] ME
 # [DESCRIPTION] First working solution
@@ -149,7 +181,41 @@ TimeMap.prototype.get = function(key, timestamp) {
 #	3. Forgot how to write hash function
 #	4. Forgot what is Map in JS
 
+# ===================================================
 
+
+# [AUTHOR] jdjw
+# [DESCRIPTION] Re-typed solution for memorization
+
+
+
+class TimeMap:
+
+    def __init__(self):
+        self.mem = collections.defaultdict(list)
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.mem[key].append([timestamp, value])
+
+    def get(self, key: str, timestamp: int) -> str:
+        values = self.mem[key]
+
+        if not values:
+            return ""
+
+        left, right = 0, len(values) - 1
+
+        while left < right:
+            mid = (left + right + 1) // 2
+            pre_time, value = values[mid]
+
+            if pre_time > timestamp:
+                right = mid - 1
+
+            else:
+                left = mid
+
+        return values[left][1] if values[left][0] <= timestamp else ""
 
 
 
