@@ -180,5 +180,17 @@ class Solution:
         return timeWait / len(customers)
 
 
+# [AUTHOR] Copied from rock author
+# [DESCRIPTION] Re-typed solution for memorization
 
+
+class Solution:
+    def averageWaitingTime(self, customers: List[List[int]]) -> float:
+        timeNxt = timeWait = 0
+
+        for arrival, timePrep in customers:
+            timeNxt = max(timeNxt, arrival) + timePrep
+            timeWait += timeNxt - arrival
+
+        return timeWait / len(customers)
 
