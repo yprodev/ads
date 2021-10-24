@@ -19,6 +19,9 @@ b.left = d;
 b.right = e;
 c.right = f;
 
+
+module.exports = { binaryTree: a };
+
 /*
         a
        / \
