@@ -1,0 +1,10 @@
+REACTO approach on a coding interview
+
+R - repeat the question
+E - give an examples (try find out the possible inputs and desirable output)
+A - describe an approach
+C - code the solution
+T - test the solution
+O - Talk about optimization
+
+source: https://www.youtube.com/watch?v=DIR_rxusO8Q
